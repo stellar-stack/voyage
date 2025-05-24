@@ -20,6 +20,7 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # below we have user include method to connect to urls.py in out foot app
     path('', include('foot.urls')),
 
 ]

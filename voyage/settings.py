@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-# conenecting our apps
+    # connecting our apps 
     'foot.apps.FootConfig',
 ]
 
@@ -58,6 +58,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
+            # with this we have combined templates files to our app and methods
             BASE_DIR / 'templates',
         ],
         'APP_DIRS': True,

@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
+# foot is our base app.
+
+# creating the methods to render pages.
 def Home(request):
     return render(request, 'home.html')
 

@@ -1,5 +1,6 @@
+* read the comments in the visiting files.
 visit:
-* do read the comments in the visiting files.
+
 1. foot/views.py
 2. foot/urls.py
 

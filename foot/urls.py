@@ -6,5 +6,5 @@ from . import views
 urlpatterns = [
     # after this visit the project(voyage) urls.py
     path('', views.Home, name="home" ),
-    path('room/<str:pk>/', views.Room, name="room"),            
+    path('room/<str:pk>/', views.room, name="room"),            
 ]

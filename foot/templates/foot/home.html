@@ -7,9 +7,12 @@
 
 <div>
     <div>
+        <a href="{% url 'create-room'%}"> create-room </a>
         {% comment %} running the for loop {% endcomment %}
         {% for room in rooms %}
             <div>
+                <a href="{% url 'update-room' room.id %}">Edit</a>
+                <a href="{% url 'delete-room' room.id %}">Delete</a>
                 {% comment %} IN THE FOLLOWING LINES WE'RE ACCESSING THE DATA FROM OUR METHODS {% endcomment %}
                 <span>@{{room.host.username}}</span>
                 <h5>{{room.id}} -- <a href="{%url 'room' room.id %}"> {{room.name}} </a></h5>

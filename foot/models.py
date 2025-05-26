@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 # WEHAVE CREATED 3 MODELS:
 
 # 1. JUST TO HAVE TOPICFIELD TO BE FIELDUP BY USER
@@ -25,6 +26,12 @@ class Room (models.Model):
     #participants
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+
+    #  below is the model to prioritise the the post(recent posts on top)
+
+    class Meta:
+        ordering = ['-updated', '-created']
+
 
     def __str__(self):
         return self.name

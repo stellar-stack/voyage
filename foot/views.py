@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Room
+from .models import Room, Topic
 from .form import RoomForm
 # foot is our base app.
 
@@ -10,8 +10,11 @@ from .form import RoomForm
 # ]
 # creating the methods to render pages.
 def Home(request):
-    rooms = Room.objects.all()
-    context = {'rooms':rooms}
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    # rooms = Room.objects.all()
+    rooms = Room.objects.filter(topic__name__icontains = q)
+    topics = Topic.objects.all()
+    context = {'rooms':rooms, 'topics':topics}
     return render(request, 'foot/home.html', context)
 
 def room(request, pk):

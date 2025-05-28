@@ -28,6 +28,7 @@
 
    <div>
      <div>
+        <h5>{{room_count}} Rooms Availaible</h5>
         <a href="{% url 'create-room'%}"> create-room </a>
         {% comment %} running the for loop {% endcomment %}
         {% for room in rooms %}

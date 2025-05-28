@@ -4,7 +4,9 @@ from . import views
 # making the routes to visit those pages
 
 urlpatterns = [
+   
     # after this visit the project(voyage) urls.py
+    path('login/', views.loginPage, name="login"),
     path('', views.Home, name="home" ),
     path('room/<str:pk>/', views.room, name="room"),  
 

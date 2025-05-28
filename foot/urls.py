@@ -7,6 +7,10 @@ urlpatterns = [
    
     # after this visit the project(voyage) urls.py
     path('login/', views.loginPage, name="login"),
+    path('logout/', views.logoutUser, name="logout"),
+    path('register/', views.registerPage, name="register"),
+    
+
     path('', views.Home, name="home" ),
     path('room/<str:pk>/', views.room, name="room"),  
 

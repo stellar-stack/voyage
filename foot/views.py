@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
-from .models import Room, Topic
+from .models import Room, Topic, Message
 from .form import RoomForm
 from django.contrib import messages
 # foot is our base app.
@@ -77,7 +77,21 @@ def Home(request):
 
 def room(request, pk):
     room = Room.objects.get(id=pk)
-    context = {'room':room}
+    room_messages = room.message_set.all().order_by('-created')
+
+    # getting the all the participants
+    participants = room.participants .all()
+
+    if request.method == 'POST':
+        message = Message.objects.create(
+            user=request.user,
+            room=room,
+            body=request.POST.get('body')
+        )
+        # functionality to add the participants
+        room.participants.add(request.user)
+        return redirect('room', pk=room.id)
+    context = {'room':room, 'room_messages':room_messages, 'participants':participants}
     return  render(request, 'foot/room.html', context)
 
 # created a methos to request form from room_form.html
@@ -131,3 +145,19 @@ def deleteRoom(request, pk):
         room.delete()
         return redirect('home')
     return render(request, 'foot/delete.html', {'obj':room})
+
+
+# funtionm to allow a user to delete the message
+@login_required(login_url= 'login')#maing sure we let user to delete the room if the user is logedin
+def deleteMessage(request, pk):
+    message = Message.objects.get(id=pk)
+
+    # making sure user is only allowed to delete if it is logedin/Authaurized 
+    if request.user != message.user:
+        return HttpResponse('You are not allowed here!!')
+    
+    # making sure of the form submission
+    if request.method == 'POST':
+        message.delete()
+        return redirect('home')
+    return render(request, 'foot/delete.html', {'obj':message})

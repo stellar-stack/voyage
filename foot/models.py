@@ -49,5 +49,9 @@ class Message(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
+# recently addaed for newest feed/msgs on top(ordering)
+    class Meta:
+            ordering = ['-updated', '-created']
+
     def __str__(self):
         return self.body[0:50]

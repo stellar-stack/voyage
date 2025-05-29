@@ -108,7 +108,16 @@ def room(request, pk):
     context = {'room':room, 'room_messages':room_messages, 'participants':participants}
     return  render(request, 'foot/room.html', context)
 
-# created a methos to request form from room_form.html
+
+def userProfile(request, pk):
+    user = User.objects.get(id=pk)
+    rooms = user.room_set.all()
+    room_messages = user.message_set.all()
+    topics = Topic.objects.all()
+
+    context = {'user': user, 'rooms':rooms, 'room_messages':room_messages, 'topics':topics}
+    return render(request, 'foot/profile.html', context )
+# created a method to request form from room_form.html
 # then go to foot/urls.py
 
 @login_required(login_url= 'login') #maing sure we let user to create the room if the user is logedin

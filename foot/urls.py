@@ -13,13 +13,17 @@ urlpatterns = [
 
     path('', views.Home, name="home" ),
     path('room/<str:pk>/', views.room, name="room"),  
+    path('profile/<str:pk>/', views.userProfile, name="user-profile"),  
+
+
 
     path('create-room/', views.createRoom, name="create-room"),
     # THEN GO TO HOME.HTML TO CREATE A LINK (createroom).
-
-
     # path to update the form
     path('update-room/<str:pk>/', views.updateRoom, name="update-room"),
     path('delete-room/<str:pk>/', views.deleteRoom, name="delete-room"),
+    # delete url path for feed/participants on the home page
     path('delete-message/<str:pk>/', views.deleteMessage, name="delete-message"),
+
+  
 ]

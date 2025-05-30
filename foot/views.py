@@ -136,7 +136,7 @@ def createRoom(request):
     return render(request, 'foot/room_form.html', context)
 
 
-@login_required(login_url= 'login') #maing sure we let user to update the room if the user is logedin
+@login_required(login_url= 'login') #making sure we let user to update the room if the user is logedin
 def updateRoom(request, pk):
     room = Room.objects.get(id = pk)
     form = RoomForm(instance=room)

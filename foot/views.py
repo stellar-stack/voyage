@@ -128,6 +128,10 @@ def createRoom(request):
     if request.method == 'POST':
         form= RoomForm(request.POST)
         if form.is_valid():
+
+            # the host will be set based on login
+            room = form.save(commit=False)
+            room.host = request.user
             form.save()
 
             return redirect('home')

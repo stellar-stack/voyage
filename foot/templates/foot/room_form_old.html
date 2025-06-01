@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% comment %}
+ Creating a form,
+after this we get to views.py and create a 
+method to render the this form
+
+{% endcomment %}
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" name="Submit">
+    </form>
+</div>
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{%block content%}
+{% comment %} created this login page then moves to views.py to create login method {% endcomment %}
+
+{% if page == 'login'%}
+<div>
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" placeholder="Enter username" >
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="Enter Password" />
+
+        <input type="submit" value="login">
+    </form>
+
+    <p>Have'nt signedup yet?</p>
+    <a href="{% url 'register' %}">Sign up</a>
+</div>
+
+{% else %}
+<div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Register">
+    </form>
+
+    <p>Already signedup?</p>
+    <a href="{% url 'login' %}">LogIn</a>
+
+    
+</div>
+{% endif %}
+
+{%endblock content%}

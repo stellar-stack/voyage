@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth.forms import UserCreationForm
 from .models import Room, Topic, Message
-from .form import RoomForm
+from .form import RoomForm, UserForm
 from django.contrib import messages
 # foot is our base app.
 
@@ -26,7 +26,7 @@ def loginPage(request):
 
 
     if request.method == "POST":
-        username = request.POST.get('username').lower()
+        username = request.POST.get('username', '').lower()
         password = request.POST.get('password')
 
         try:
@@ -202,3 +202,18 @@ def deleteMessage(request, pk):
         message.delete()
         return redirect('home')
     return render(request, 'foot/delete.html', {'obj':message})
+
+
+    # addin an update user function
+@login_required(login_url= 'login')
+def updateUser(request):
+    user = request.user
+    form = UserForm(instance=user)
+
+    if request.method == 'POST':
+        form = UserForm(request.POST,instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user-profile', pk=user.id)
+
+    return render(request, 'foot/update-user.html', {'form':form})

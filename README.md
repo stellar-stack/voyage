@@ -17,7 +17,7 @@ visit:
 * then add the "rest_framework" to voyage/setting.py.INSTALLED_APPS
 * 
 1. create a folder named api within foot app->(foot/api).
-2. within api folder create these file (api/views.py, __init__.py, urls.py AND serialozers.py)
+2. within api folder create these file (api/views.py, __init__.py, urls.py AND serializers.py)
 
   * go to voyage/urls.py and mention api/urls path
     
